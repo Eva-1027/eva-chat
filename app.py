@@ -21,7 +21,9 @@ def chat(prompt):
             {"role": "user", "content": prompt}
         ]
     )
-    return response.choices[0].message.content
+    answer = response.choices[0].message.content
+    print(f"Answer is:{answer}")
+    return answer
 
 
 if __name__ == "__main__":
@@ -40,7 +42,6 @@ if __name__ == "__main__":
     if prompt:
         with st.spinner("Generating......"):
             output = chat(prompt)
-
             st.session_state["chat_answers_history"].append(output)
             st.session_state["user_prompt_history"].append(prompt)
             st.session_state["chat_history"].append((prompt, output))
